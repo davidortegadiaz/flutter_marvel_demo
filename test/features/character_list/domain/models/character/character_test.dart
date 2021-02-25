@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_marvel_demo/features/character_detail/domain/models/comic.dart';
 import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
 import 'package:flutter_test/flutter_test.dart';
 
