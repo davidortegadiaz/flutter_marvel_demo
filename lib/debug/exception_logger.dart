@@ -10,7 +10,7 @@ class ExceptionLogger {
   Exception exception({
     ExceptionType type,
     String errorMessage,
-    dynamic stackTracke,
+    dynamic stackTrace,
   }) {
     Exception _exception;
     switch (type) {
