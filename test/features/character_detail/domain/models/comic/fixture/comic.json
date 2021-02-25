@@ -1,0 +1,18 @@
+{
+  "id": 0,
+  "title": "title",
+  "variantDescription": "variant description",
+  "description": "description",
+  "format": "format",
+  "pageCount": 0,
+  "urls": [
+    {
+      "type": "type",
+      "url": "url"
+    }
+  ],
+  "thumbnail": {
+    "path": "path",
+    "extension": "extension"
+  }
+}

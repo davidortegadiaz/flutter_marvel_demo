@@ -1,0 +1,15 @@
+{
+  "id": 0,
+  "name": "name",
+  "description": "description",
+  "thumbnail": {
+    "path": "path",
+    "extension": "extension"
+  },
+  "urls": [
+    {
+      "type": "type",
+      "url": "url"
+    }
+  ]
+}
