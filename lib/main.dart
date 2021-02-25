@@ -1,31 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_marvel_demo/di/inyector.dart';
+import 'package:get/get.dart';
+import 'package:colorize_lumberdash/colorize_lumberdash.dart';
+import 'package:lumberdash/lumberdash.dart';
+import 'package:flutter_marvel_demo/routes/route_names.dart';
+import 'package:flutter_marvel_demo/routes/routes.dart';
 
 void main() {
-  runApp(MyApp());
+  Bloc.observer = MyBlocObserver() as BlocObserver;
+  putLumberdashToWork(withClients: [ColorizeLumberdash()]);
+  inyect();
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class MyBlocObserver {}
+
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: 'Flutter Marvel Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Marvel Demo'),
+      initialRoute: RouteNames.characterListPage,
+      getPages: getPages(),
+      //home: CharacterListPage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+class CharacterListPage extends StatelessWidget {
+  const CharacterListPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('List'),
       ),
       body: Center(child: Text('Press the button to fetch characters!!')),
       floatingActionButton: FloatingActionButton(
