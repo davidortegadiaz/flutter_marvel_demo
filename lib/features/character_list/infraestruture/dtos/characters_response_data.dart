@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
 
-class CharacterDataResponse {
+class CharacterResponseData {
   final int offset;
   final int limit;
   final int total;
@@ -10,7 +10,7 @@ class CharacterDataResponse {
 
 //<editor-fold desc="Data Methods" defaultstate="collapsed">
 
-  const CharacterDataResponse({
+  const CharacterResponseData({
     @required this.offset,
     @required this.limit,
     @required this.total,
@@ -18,7 +18,7 @@ class CharacterDataResponse {
     @required this.results,
   });
 
-  CharacterDataResponse copyWith({
+  CharacterResponseData copyWith({
     int offset,
     int limit,
     int total,
@@ -33,7 +33,7 @@ class CharacterDataResponse {
       return this;
     }
 
-    return CharacterDataResponse(
+    return CharacterResponseData(
       offset: offset ?? this.offset,
       limit: limit ?? this.limit,
       total: total ?? this.total,
@@ -50,7 +50,7 @@ class CharacterDataResponse {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CharacterDataResponse &&
+      (other is CharacterResponseData &&
           runtimeType == other.runtimeType &&
           offset == other.offset &&
           limit == other.limit &&
@@ -61,8 +61,8 @@ class CharacterDataResponse {
   @override
   int get hashCode => offset.hashCode ^ limit.hashCode ^ total.hashCode ^ count.hashCode ^ results.hashCode;
 
-  factory CharacterDataResponse.fromMap(Map<String, dynamic> map) {
-    return CharacterDataResponse(
+  factory CharacterResponseData.fromMap(Map<String, dynamic> map) {
+    return CharacterResponseData(
       offset: map['offset'] as int,
       limit: map['limit'] as int,
       total: map['total'] as int,
