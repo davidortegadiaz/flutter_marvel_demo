@@ -9,7 +9,7 @@ class CharactersState {
 //<editor-fold desc="Data Methods" defaultstate="collapsed">
 
   const CharactersState({
-    this.characters,
+    this.characters = const [],
     this.loading = false,
     this.error = false,
   });

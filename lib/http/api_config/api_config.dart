@@ -18,7 +18,7 @@ class ApiConfig {
   }
 
   Future<Map<String, Object>> queryParams() async {
-    final ApiConfig _config = await ApiConfigLoader(secretPath: 'assets/api_keys.json').load();
+    final ApiConfig _config = await ApiConfigLoader(secretPath: 'assets/keys/api_keys.json').load();
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final hash = md5
         .convert(

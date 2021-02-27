@@ -9,7 +9,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Marvel Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       initialRoute: RouteNames.characterListPage,
       getPages: getPages(),

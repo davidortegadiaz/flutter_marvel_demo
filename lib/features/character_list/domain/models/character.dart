@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_marvel_demo/features/character_detail/domain/models/comic.dart';
 import 'package:flutter_marvel_demo/shared/models/thumbnail.dart';
 import 'package:flutter_marvel_demo/shared/models/url.dart';
-import 'package:flutter_marvel_demo/features/character_detail/domain/models/comic.dart';
 
 class Character {
   final int id;
@@ -86,4 +86,7 @@ class Character {
 
 //</editor-fold>
 
+  String get picture {
+    return '${thumbnail.path}/landscape_incredible.${thumbnail.extension}';
+  }
 }
