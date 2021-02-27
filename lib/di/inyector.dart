@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 void inyect() {
   Get.put<ApiConfig>(ApiConfig());
   Get.put<Dio>(DioClient.getInstance().dio);
-  //Get.put<CharactersDataSource>(ApiCharactersDataSource());
+  Get.put<CharactersDataSource>(ApiCharactersDataSource());
   //Get.put<CharactersRepository>(ApiCharactersRepository());
   //Get.put<CharactersBloc>(CharactersBloc());
 }

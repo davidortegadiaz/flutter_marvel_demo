@@ -1,0 +1,27 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "count": 1,
+    "results": [
+      {
+        "id": 0,
+        "name": "name",
+        "description": "description",
+        "thumbnail": {
+          "path": "path",
+          "extension": "extension"
+        },
+        "urls": [
+          {
+            "type": "type",
+            "url": "url"
+          }
+        ]
+      }
+    ]
+  }
+}
