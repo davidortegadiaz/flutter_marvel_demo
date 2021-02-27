@@ -6,7 +6,7 @@ import 'package:flutter_marvel_demo/http/endpoints.dart';
 import 'package:get/get.dart';
 
 abstract class ComicsDataSource {
-  Future<ComicsResponseData> fetchCharacters(int characterId);
+  Future<ComicsResponseData> fetchComics(int characterId);
 }
 
 class ApiComicsDataSource extends ComicsDataSource with ExceptionLogger {
@@ -20,7 +20,7 @@ class ApiComicsDataSource extends ComicsDataSource with ExceptionLogger {
         _apiConfig = apiConfig ?? Get.find<ApiConfig>();
 
   @override
-  Future<ComicsResponseData> fetchCharacters(int characterId) async {
+  Future<ComicsResponseData> fetchComics(int characterId) async {
     final Map<String, Object> _queryParams = await _apiConfig.queryParams();
     final d.Response _response = await _dio.get(
       Endpoints.characters + '/$characterId' + Endpoints.comics,

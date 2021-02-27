@@ -1,5 +1,5 @@
 import 'package:flutter_marvel_demo/features/character_list/domain/repositories/characters_repository.dart';
-import 'package:flutter_marvel_demo/features/character_list/infraestruture/data_sources/characters_data_source.dart';
+import 'package:flutter_marvel_demo/features/character_list/infraestruture/data_sources/api_characters_data_source.dart';
 import 'package:flutter_marvel_demo/features/character_list/infraestruture/repositories/api_characters_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -18,7 +18,7 @@ void main() {
   });
 
   test(
-    'fetchEvents should return an character list when dataSource returns a CharacterResponseData',
+    'fetchComicss should return an character list when dataSource returns a CharacterResponseData',
     () async {
       when(
         _mockCharactersDataSource.fetchCharacters(),

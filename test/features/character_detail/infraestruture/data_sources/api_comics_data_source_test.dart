@@ -45,7 +45,7 @@ void main() {
         ),
       );
 
-      final _result = await _dataSource.fetchCharacters(0);
+      final _result = await _dataSource.fetchComics(0);
       expect(_result, tComicsResponseData);
     },
   );
@@ -64,7 +64,7 @@ void main() {
           statusMessage: 'error',
         ),
       );
-      final _result = _dataSource.fetchCharacters;
+      final _result = _dataSource.fetchComics;
       expect(
         _result.call(0),
         throwsA(
