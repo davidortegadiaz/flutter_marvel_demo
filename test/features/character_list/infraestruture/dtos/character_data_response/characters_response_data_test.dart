@@ -1,17 +1,17 @@
 import 'dart:convert';
 
-import 'package:flutter_marvel_demo/features/character_list/infraestruture/dtos/characters_data_response.dart';
+import 'package:flutter_marvel_demo/features/character_list/infraestruture/dtos/characters_response_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../fixture_reader.dart';
-import 'fake/character_data_response.dart';
+import 'fake/character_reponse_data.dart';
 
 void main() {
   group(
-    'CharacterDataResponse dto test',
+    'CharacterResponseData dto test',
     () {
       test(
-        'CharacterDataResponse.fromMap should return a valid model',
+        'CharacterResponseData.fromMap should return a valid model',
         () async {
           final Map<String, dynamic> jsonMap = json.decode(
             fixture(
@@ -19,9 +19,9 @@ void main() {
             ),
           ) as Map<String, dynamic>;
 
-          final CharacterDataResponse result = CharacterDataResponse.fromMap(jsonMap);
+          final CharacterResponseData result = CharacterResponseData.fromMap(jsonMap);
 
-          expect(result, tCharacterDataResponse);
+          expect(result, tCharactersResponseData);
         },
       );
     },
