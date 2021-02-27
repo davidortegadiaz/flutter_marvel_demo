@@ -65,7 +65,12 @@ void main() {
         ),
       );
       final _result = _dataSource.fetchCharacters;
-      expect(_result.call(), throwsA(predicate((e) => e is BadRequestException)));
+      expect(
+        _result.call(),
+        throwsA(
+          predicate((e) => e is BadRequestException),
+        ),
+      );
     },
   );
 }

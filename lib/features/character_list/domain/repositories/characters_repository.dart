@@ -1,3 +1,5 @@
+import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
+
 abstract class CharactersRepository {
-  Future<void> fetchCharacters();
+  Future<List<Character>> fetchCharacters();
 }

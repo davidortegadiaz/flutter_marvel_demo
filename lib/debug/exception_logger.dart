@@ -1,9 +1,10 @@
-import 'package:lumberdash/lumberdash.dart';
 import 'package:flutter_marvel_demo/http/custom_exceptions.dart';
+import 'package:lumberdash/lumberdash.dart';
 
 enum ExceptionType {
   badRequest,
   noResponse,
+  exception,
 }
 
 class ExceptionLogger {
