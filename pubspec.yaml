@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.1
+  dio: ^3.0.10
+  crypto: ^2.1.5
   intl: ^0.16.1
   get: ^3.10.2
   flutter_bloc: ^6.0.5
