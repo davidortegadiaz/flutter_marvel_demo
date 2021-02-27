@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart' as d;
+import 'package:flutter_marvel_demo/debug/exception_logger.dart';
 import 'package:flutter_marvel_demo/features/character_list/infraestruture/dtos/characters_response_data.dart';
 import 'package:flutter_marvel_demo/http/api_config/api_config.dart';
 import 'package:flutter_marvel_demo/http/endpoints.dart';
-import 'package:flutter_marvel_demo/debug/exception_logger.dart';
 import 'package:get/get.dart';
 
 abstract class CharactersDataSource {
