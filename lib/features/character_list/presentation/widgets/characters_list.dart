@@ -16,17 +16,11 @@ class CharactersList extends StatelessWidget {
     return BlocBuilder<CharactersBloc, CharactersState>(
       cubit: Get.find<CharactersBloc>(),
       builder: (context, state) {
-        if (state.loading) {
-          return Center(
-            key: Key('loading'),
-            child: CircularProgressIndicator(key: Key('loadingImage')),
-          );
-        }
         if (state.error) {
           return Center(
             key: Key('errorMessage'),
             child: Text(
-              'Se ha producido un error...',
+              'Ops! sorry, something went wrong...',
               key: Key('initialErrorText'),
             ),
           );
