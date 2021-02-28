@@ -85,7 +85,7 @@ void main() {
       );
 
       blocTest<CharactersBloc, CharactersState>(
-        'should emit [tActivityProviderLoading, tActivityProviderError] when CharactersStateRepository throws Exception',
+        'should emit [tCharacterLoading, tCharacterError] when CharactersRepository throws Exception',
         build: () {
           when(_mockCharactersRepository.fetchCharacters()).thenThrow((_) async => Exception());
           return charactersBloc;
