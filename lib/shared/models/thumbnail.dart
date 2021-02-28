@@ -52,4 +52,14 @@ class Thumbnail {
 
 //</editor-fold>
 
+  String url(ThumbnailType type) {
+    String _type = type.toString().split('.').last;
+    return '$path/$_type.$extension';
+  }
+}
+
+enum ThumbnailType {
+  portrait_incredible,
+  standard_amazing,
+  landscape_incredible,
 }

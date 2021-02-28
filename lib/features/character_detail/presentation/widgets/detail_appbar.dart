@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
+import 'package:flutter_marvel_demo/shared/models/thumbnail.dart';
 
 class DetailAppBar extends StatelessWidget {
   const DetailAppBar({
@@ -28,7 +29,7 @@ class DetailAppBar extends StatelessWidget {
         ),
         centerTitle: true,
         background: Image.network(
-          _character.picture,
+          _character.thumbnail.url(ThumbnailType.landscape_incredible),
           fit: BoxFit.cover,
           colorBlendMode: BlendMode.multiply,
           color: Colors.grey.shade500,

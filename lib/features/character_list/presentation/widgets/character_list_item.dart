@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
 import 'package:flutter_marvel_demo/routes/route_names.dart';
+import 'package:flutter_marvel_demo/shared/models/thumbnail.dart';
 import 'package:get/get.dart';
 
 class CharacterListItem extends StatelessWidget {
@@ -27,7 +28,9 @@ class CharacterListItem extends StatelessWidget {
               bottom: 4,
               right: 4,
             ),
-            child: Image.network(_character.picture),
+            child: Image.network(
+              _character.thumbnail.url(ThumbnailType.standard_amazing),
+            ),
           ),
           title: Text(
             _character.name.toUpperCase(),

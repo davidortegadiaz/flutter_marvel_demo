@@ -86,7 +86,4 @@ class Character {
 
 //</editor-fold>
 
-  String get picture {
-    return '${thumbnail.path}/landscape_incredible.${thumbnail.extension}';
-  }
 }
