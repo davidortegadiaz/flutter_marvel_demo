@@ -49,7 +49,7 @@ class _CharactersListState extends State<CharactersList> {
             ),
           );
         }
-        final List<Character> _characters = state.characters;
+        final List<Character> _characters = state.showableCharacters;
         if (_characters.isEmpty) {
           return Center(
             key: Key('character.list.empty'),

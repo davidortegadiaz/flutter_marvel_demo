@@ -7,6 +7,7 @@ import 'package:flutter_marvel_demo/features/character_list/domain/bloc/characte
 import 'package:flutter_marvel_demo/features/character_list/domain/repositories/characters_repository.dart';
 import 'package:flutter_marvel_demo/features/character_list/infraestruture/data_sources/api_characters_data_source.dart';
 import 'package:flutter_marvel_demo/features/character_list/infraestruture/repositories/api_characters_repository.dart';
+import 'package:flutter_marvel_demo/features/character_list/presentation/managers/search_bar_bloc.dart';
 import 'package:flutter_marvel_demo/http/api_config/api_config.dart';
 import 'package:flutter_marvel_demo/http/dio_client/dio_client.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ void inyect() {
   Get.put<CharactersDataSource>(ApiCharactersDataSource());
   Get.put<CharactersRepository>(ApiCharactersRepository());
   Get.put<CharactersBloc>(CharactersBloc());
+  Get.put<SearchBarBloc>(SearchBarBloc());
 
   Get.put<ComicsDataSource>(ApiComicsDataSource());
   Get.put<ComicsRepository>(ApiComicsRepository());

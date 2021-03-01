@@ -10,3 +10,11 @@ const Character tCharacter = Character(
   thumbnail: tThumbnail,
   urls: [tUrl],
 );
+
+const Character tCharacter2 = Character(
+  id: 0,
+  name: 'nname',
+  description: 'description',
+  thumbnail: tThumbnail,
+  urls: [tUrl],
+);

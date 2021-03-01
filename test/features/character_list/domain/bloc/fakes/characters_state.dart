@@ -8,10 +8,41 @@ const CharactersState tLoadingCharactersState = CharactersState(
 );
 const CharactersState tSuccessCharactersState = CharactersState(
   characters: [tCharacter],
+  showableCharacters: [tCharacter],
   loading: false,
   error: false,
 );
+
+final CharactersState tCharactersFetchMoreLoadingState = tLoadingCharactersState.copyWith(
+  characters: [tCharacter],
+  showableCharacters: [tCharacter],
+  loading: true,
+);
+
+final CharactersState tCharactersFetchMoreSuccessState = tSuccessCharactersState.copyWith(
+  characters: [tCharacter, tCharacter2],
+  showableCharacters: [tCharacter, tCharacter2],
+  loading: false,
+  error: false,
+);
+
 const CharactersState tErrorCharactersState = CharactersState(
   loading: false,
   error: true,
+);
+
+const CharactersState tBeforeFilterCharactersState = CharactersState(
+  characters: [tCharacter, tCharacter2],
+  showableCharacters: [tCharacter, tCharacter2],
+);
+
+const CharactersState tAfterFilterCharactersState = CharactersState(
+  characters: [tCharacter, tCharacter2],
+  showableCharacters: [tCharacter2],
+);
+
+const CharactersState tHasReachedMaxCharactersState = CharactersState(
+  hasReachedMax: true,
+  characters: [tCharacter, tCharacter2],
+  showableCharacters: [tCharacter, tCharacter2],
 );

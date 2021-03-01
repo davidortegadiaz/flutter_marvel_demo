@@ -68,7 +68,7 @@ void main() {
 
     group('CharactersFetch ', () {
       blocTest<CharactersBloc, CharactersState>(
-        'should emit [tCharactersLoading, tCharactersSuccessState] when CharactersRepository returns a list of characters',
+        'should emit [tCharactersLoading, tCharactersSuccessState] when add a CharactersFetch event and CharactersRepository returns a list of characters',
         build: () {
           when(_mockCharactersRepository.fetchCharacters(offSet: 0)).thenAnswer((_) async => [
                 tCharacter,
@@ -78,7 +78,7 @@ void main() {
         act: (bloc) async {
           charactersBloc.add(CharactersFetch());
         },
-        wait: Duration(milliseconds: 1000),
+        wait: Duration(milliseconds: 500),
         expect: <CharactersState>[
           tLoadingCharactersState,
           tSuccessCharactersState,
@@ -86,7 +86,37 @@ void main() {
       );
 
       blocTest<CharactersBloc, CharactersState>(
-        'should emit [tCharacterLoading, tCharacterError] when CharactersRepository throws Exception',
+        'should emit [tCharactersFetchMoreLoadingState, tCharactersFetchMoreSuccessState] when add a CharactersFetch event and CharactersRepository returns a list of characters',
+        seed: tSuccessCharactersState,
+        build: () {
+          when(_mockCharactersRepository.fetchCharacters(offSet: 1)).thenAnswer((_) async => [
+                tCharacter2,
+              ]);
+          return charactersBloc;
+        },
+        act: (bloc) async {
+          charactersBloc.add(CharactersFetch());
+        },
+        wait: Duration(milliseconds: 500),
+        expect: <CharactersState>[
+          tCharactersFetchMoreLoadingState,
+          tCharactersFetchMoreSuccessState,
+        ],
+      );
+
+      blocTest<CharactersBloc, CharactersState>(
+        'should emit nothing when add a CharactersFetch event but hasReachedMax is true',
+        seed: tHasReachedMaxCharactersState,
+        build: () => charactersBloc,
+        act: (bloc) async {
+          charactersBloc.add(CharactersFetch());
+        },
+        wait: Duration(milliseconds: 500),
+        expect: <CharactersState>[],
+      );
+
+      blocTest<CharactersBloc, CharactersState>(
+        'should emit [tCharacterLoading, tCharacterError] when add a CharactersFetch event and CharactersRepository throws Exception',
         build: () {
           when(_mockCharactersRepository.fetchCharacters()).thenThrow((_) async => Exception());
           return charactersBloc;
@@ -94,11 +124,35 @@ void main() {
         act: (bloc) async {
           charactersBloc.add(CharactersFetch());
         },
-        wait: Duration(milliseconds: 1000),
+        wait: Duration(milliseconds: 500),
         expect: <CharactersState>[
           tLoadingCharactersState,
           tErrorCharactersState,
         ],
+      );
+    });
+
+    group('CharactersFilter ', () {
+      blocTest<CharactersBloc, CharactersState>(
+        'should emit [tAfterFilterCharactersState] when add a CharactersFilter event with searchValue="nn"',
+        seed: tBeforeFilterCharactersState,
+        build: () => charactersBloc,
+        act: (bloc) async {
+          charactersBloc.add(CharactersFilter(searchValue: 'nn'));
+        },
+        wait: Duration(milliseconds: 500),
+        expect: <CharactersState>[tAfterFilterCharactersState],
+      );
+
+      blocTest<CharactersBloc, CharactersState>(
+        'should emit [tBeforeFilterCharactersState] when add a CharactersFilter event with searchValue=""',
+        seed: tAfterFilterCharactersState,
+        build: () => charactersBloc,
+        act: (bloc) async {
+          charactersBloc.add(CharactersFilter(searchValue: ''));
+        },
+        wait: Duration(milliseconds: 500),
+        expect: <CharactersState>[tBeforeFilterCharactersState],
       );
     });
   });

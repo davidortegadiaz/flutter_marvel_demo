@@ -26,6 +26,10 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     if (event is CharactersFetch) {
       yield* _fetchToState();
     }
+
+    if (event is CharactersFilter) {
+      yield* _filterToState(event.searchValue);
+    }
   }
 
   @override
@@ -40,17 +44,19 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   }
 
   Stream<CharactersState> _fetchToState() async* {
-    yield state.copyWith(
-      loading: true,
-      error: false,
-    );
     if (!state.hasReachedMax) {
+      yield state.copyWith(
+        loading: true,
+        error: false,
+      );
       try {
-        final List<Character> _characters = await _repository.fetchCharacters(
+        List<Character> _characters = await _repository.fetchCharacters(
           offSet: state.characters.length,
         );
+        _characters = state.characters + _characters;
         yield state.copyWith(
-          characters: state.characters + _characters,
+          characters: _characters,
+          showableCharacters: _characters,
           loading: false,
           hasReachedMax: _characters.isEmpty,
         );
@@ -60,10 +66,25 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     }
   }
 
+  Stream<CharactersState> _filterToState(String searchValue) async* {
+    yield state.copyWith(
+      showableCharacters: _filterCharacters(searchValue),
+    );
+  }
+
   Stream<CharactersState> _errorToState() async* {
     yield state.copyWith(
       loading: false,
       error: true,
     );
+  }
+
+  List<Character> _filterCharacters([String searchValue = '']) {
+    List<Character> _showableCharacters = state.characters
+        .where(
+          (i) => i.name.toLowerCase().contains(searchValue),
+        )
+        .toList();
+    return _showableCharacters;
   }
 }

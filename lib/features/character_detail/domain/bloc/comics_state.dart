@@ -49,23 +49,6 @@ class ComicsState {
   @override
   int get hashCode => comics.hashCode ^ loading.hashCode ^ error.hashCode;
 
-  factory ComicsState.fromMap(Map<String, dynamic> map) {
-    return ComicsState(
-      comics:
-          (map['comics'] as List)?.map((e) => e == null ? null : Comic.fromMap(e as Map<String, dynamic>))?.toList(),
-      loading: map['loading'] as bool,
-      error: map['error'] as bool,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'comics': this.comics,
-      'loading': this.loading,
-      'error': this.error,
-    };
-  }
-
 //</editor-fold>
 
 }

@@ -7,3 +7,12 @@ abstract class CharactersEvent extends Equatable {
 }
 
 class CharactersFetch extends CharactersEvent {}
+
+class CharactersFilter extends CharactersEvent {
+  final String searchValue;
+
+  CharactersFilter({this.searchValue});
+
+  @override
+  List<Object> get props => [searchValue];
+}
