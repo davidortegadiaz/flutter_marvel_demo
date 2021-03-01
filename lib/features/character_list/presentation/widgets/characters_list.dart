@@ -18,29 +18,33 @@ class CharactersList extends StatelessWidget {
       builder: (context, state) {
         if (state.error) {
           return Center(
-            key: Key('errorMessage'),
+            key: Key('character.list.error'),
             child: Text(
               'Ops! sorry, something went wrong...',
-              key: Key('initialErrorText'),
+              key: Key('character.list.error.message'),
             ),
           );
         }
         final List<Character> _results = state.characters;
         if (_results.isEmpty) {
           return Center(
-            key: Key('empty'),
+            key: Key('character.list.empty'),
             child: Center(
-              child: Text('Press the button to fetch characters!!'),
+              child: Text(
+                'Press the button to fetch characters!!',
+                key: Key('character.list.empty.message'),
+              ),
             ),
           );
         }
         return ListView.builder(
+          key: Key('character.list'),
           padding: const EdgeInsets.all(8),
           itemCount: _results.length,
           itemBuilder: (BuildContext context, int index) {
             final Character _character = _results[index];
             return CharacterListItem(
-              key: Key('characterListItem'),
+              key: Key('character.list.item.${_character.id}'),
               character: _character,
             );
           },
