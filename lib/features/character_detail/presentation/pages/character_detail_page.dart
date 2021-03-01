@@ -6,7 +6,9 @@ import 'package:flutter_marvel_demo/features/character_list/domain/models/charac
 import 'package:get/get.dart';
 
 class CharacterDetailPage extends StatelessWidget {
-  const CharacterDetailPage({Key key}) : super(key: key);
+  const CharacterDetailPage({
+    Key key = const Key('character.detail.page'),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

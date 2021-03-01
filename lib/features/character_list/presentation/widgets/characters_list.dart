@@ -69,7 +69,7 @@ class _CharactersListState extends State<CharactersList> {
           itemBuilder: (BuildContext context, int index) {
             final Character _character = _characters[index];
             return CharacterListItem(
-              key: Key('character.list.item.${_character.id}'),
+              key: Key('character.list.item'),
               character: _character,
             );
           },

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class FetchCharactersFAB extends StatefulWidget {
   const FetchCharactersFAB({
-    Key key,
+    Key key = const Key('characters.fetch.fab'),
   }) : super(key: key);
 
   @override
