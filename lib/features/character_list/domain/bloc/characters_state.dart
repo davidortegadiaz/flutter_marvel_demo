@@ -5,6 +5,7 @@ class CharactersState {
   final List<Character> characters;
   final bool loading;
   final bool error;
+  final bool hasReachedMax;
 
 //<editor-fold desc="Data Methods" defaultstate="collapsed">
 
@@ -12,16 +13,19 @@ class CharactersState {
     this.characters = const [],
     this.loading = false,
     this.error = false,
+    this.hasReachedMax = false,
   });
 
   CharactersState copyWith({
     List<Character> characters,
     bool loading,
     bool error,
+    bool hasReachedMax,
   }) {
     if ((characters == null || identical(characters, this.characters)) &&
         (loading == null || identical(loading, this.loading)) &&
-        (error == null || identical(error, this.error))) {
+        (error == null || identical(error, this.error)) &&
+        (hasReachedMax == null || identical(hasReachedMax, this.hasReachedMax))) {
       return this;
     }
 
@@ -29,12 +33,13 @@ class CharactersState {
       characters: characters ?? this.characters,
       loading: loading ?? this.loading,
       error: error ?? this.error,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
   }
 
   @override
   String toString() {
-    return 'CharactersState{characters: $characters, loading: $loading, error: $error}';
+    return 'CharactersState{characters: $characters, loading: $loading, error: $error, hasReachedMax: $hasReachedMax}';
   }
 
   @override
@@ -44,28 +49,11 @@ class CharactersState {
           runtimeType == other.runtimeType &&
           listEquals(other.characters, characters) &&
           loading == other.loading &&
-          error == other.error);
+          error == other.error &&
+          hasReachedMax == other.hasReachedMax);
 
   @override
-  int get hashCode => characters.hashCode ^ loading.hashCode ^ error.hashCode;
-
-  factory CharactersState.fromMap(Map<String, dynamic> map) {
-    return CharactersState(
-      characters: (map['characters'] as List)
-          ?.map((e) => e == null ? null : Character.fromMap(e as Map<String, dynamic>))
-          ?.toList(),
-      loading: map['loading'] as bool,
-      error: map['error'] as bool,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'characters': this.characters,
-      'loading': this.loading,
-      'error': this.error,
-    };
-  }
+  int get hashCode => characters.hashCode ^ loading.hashCode ^ error.hashCode ^ hasReachedMax.hashCode;
 
 //</editor-fold>
 

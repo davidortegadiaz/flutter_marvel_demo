@@ -6,10 +6,34 @@ import 'package:get/get.dart';
 
 import 'character_list_item.dart';
 
-class CharactersList extends StatelessWidget {
+class CharactersList extends StatefulWidget {
   const CharactersList({
     Key key,
   }) : super(key: key);
+
+  @override
+  _CharactersListState createState() => _CharactersListState();
+}
+
+class _CharactersListState extends State<CharactersList> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (_isBottom) Get.find<CharactersBloc>().add(CharactersFetch());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +49,8 @@ class CharactersList extends StatelessWidget {
             ),
           );
         }
-        final List<Character> _results = state.characters;
-        if (_results.isEmpty) {
+        final List<Character> _characters = state.characters;
+        if (_characters.isEmpty) {
           return Center(
             key: Key('character.list.empty'),
             child: Center(
@@ -39,10 +63,11 @@ class CharactersList extends StatelessWidget {
         }
         return ListView.builder(
           key: Key('character.list'),
+          controller: _scrollController,
           padding: const EdgeInsets.all(8),
-          itemCount: _results.length,
+          itemCount: _characters.length,
           itemBuilder: (BuildContext context, int index) {
-            final Character _character = _results[index];
+            final Character _character = _characters[index];
             return CharacterListItem(
               key: Key('character.list.item.${_character.id}'),
               character: _character,
@@ -51,5 +76,11 @@ class CharactersList extends StatelessWidget {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

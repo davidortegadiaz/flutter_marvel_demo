@@ -70,7 +70,7 @@ void main() {
       blocTest<CharactersBloc, CharactersState>(
         'should emit [tCharactersLoading, tCharactersSuccessState] when CharactersRepository returns a list of characters',
         build: () {
-          when(_mockCharactersRepository.fetchCharacters()).thenAnswer((_) async => [
+          when(_mockCharactersRepository.fetchCharacters(offSet: 0)).thenAnswer((_) async => [
                 tCharacter,
               ]);
           return charactersBloc;
@@ -78,6 +78,7 @@ void main() {
         act: (bloc) async {
           charactersBloc.add(CharactersFetch());
         },
+        wait: Duration(milliseconds: 1000),
         expect: <CharactersState>[
           tLoadingCharactersState,
           tSuccessCharactersState,
@@ -93,6 +94,7 @@ void main() {
         act: (bloc) async {
           charactersBloc.add(CharactersFetch());
         },
+        wait: Duration(milliseconds: 1000),
         expect: <CharactersState>[
           tLoadingCharactersState,
           tErrorCharactersState,

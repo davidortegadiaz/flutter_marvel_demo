@@ -13,9 +13,9 @@ class ApiCharactersRepository extends CharactersRepository with ExceptionLogger 
   }) : _dataSource = dataSource ?? Get.find<CharactersDataSource>();
 
   @override
-  Future<List<Character>> fetchCharacters() async {
+  Future<List<Character>> fetchCharacters({int offSet}) async {
     try {
-      CharacterResponseData _data = await _dataSource.fetchCharacters();
+      CharacterResponseData _data = await _dataSource.fetchCharacters(offSet: offSet);
       return _data.results;
     } catch (e) {
       throw exception(

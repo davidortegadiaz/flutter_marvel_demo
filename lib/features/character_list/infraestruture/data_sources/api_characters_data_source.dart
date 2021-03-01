@@ -6,7 +6,7 @@ import 'package:flutter_marvel_demo/http/endpoints.dart';
 import 'package:get/get.dart';
 
 abstract class CharactersDataSource {
-  Future<CharacterResponseData> fetchCharacters();
+  Future<CharacterResponseData> fetchCharacters({int offSet});
 }
 
 class ApiCharactersDataSource extends CharactersDataSource with ExceptionLogger {
@@ -20,8 +20,9 @@ class ApiCharactersDataSource extends CharactersDataSource with ExceptionLogger 
         _apiConfig = apiConfig ?? Get.find<ApiConfig>();
 
   @override
-  Future<CharacterResponseData> fetchCharacters() async {
-    final Map<String, Object> _queryParams = await _apiConfig.queryParams();
+  Future<CharacterResponseData> fetchCharacters({int offSet}) async {
+    final Map<String, Object> _queryParams = await _apiConfig.queryParams()
+      ..addIf(offSet != null, 'offset', offSet);
     final d.Response _response = await _dio.get(
       Endpoints.characters,
       queryParameters: _queryParams,
