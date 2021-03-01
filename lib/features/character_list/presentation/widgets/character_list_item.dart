@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_marvel_demo/features/character_detail/domain/bloc/comics_bloc.dart';
 import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
 import 'package:flutter_marvel_demo/routes/route_names.dart';
 import 'package:flutter_marvel_demo/shared/models/thumbnail.dart';
@@ -38,6 +39,9 @@ class CharacterListItem extends StatelessWidget {
           ),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () async {
+            Get.find<ComicsBloc>().add(
+              ComicsFetch(characterId: _character.id),
+            );
             Get.toNamed(
               RouteNames.characterDetailPage,
               arguments: _character,
