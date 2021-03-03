@@ -20,7 +20,7 @@ The content of this file looks like this:
 }
 ```
 
-Where `public_key` and `private_key` are obtained from https://developer.marvel.com/account
+Where `publicKey` and `privateKey` are obtained from https://developer.marvel.com/account
 
 ## Getting Started
 
