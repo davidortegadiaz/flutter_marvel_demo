@@ -15,8 +15,8 @@ The content of this file looks like this:
 
 ```json
 {
-  "public_key": "1234",
-  "private_key": "5678"
+  "publicKey": "1234",
+  "privateKey": "5678"
 }
 ```
 
