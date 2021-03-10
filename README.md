@@ -4,7 +4,7 @@ A Flutter app that consumes [Marvel Rest API](https://developer.marvel.com/)
 
 - perform HTTP requests using [DIO](https://pub.dev/packages/dio)
 - [get](https://pub.dev/packages/get) package for dependency management and route management
-- state management with [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- state management with [GetX](https://pub.dev/packages/get)
 - [testing](https://flutter.dev/docs/testing#integration-tests): unit test with flutter_test, and integration test with flutter_drive
 
 # Installation
