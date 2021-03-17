@@ -7,6 +7,7 @@ import 'package:colorize_lumberdash/colorize_lumberdash.dart';
 import 'package:lumberdash/lumberdash.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   putLumberdashToWork(withClients: [ColorizeLumberdash()]);
   inyect();

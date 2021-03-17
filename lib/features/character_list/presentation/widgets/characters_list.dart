@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_marvel_demo/features/character_list/domain/bloc/characters_bloc.dart';
+import 'package:flutter_marvel_demo/features/character_list/domain/controller/characters_controller.dart';
 import 'package:flutter_marvel_demo/features/character_list/domain/models/character.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +16,7 @@ class CharactersList extends StatefulWidget {
 
 class _CharactersListState extends State<CharactersList> {
   final _scrollController = ScrollController();
+  final CharactersController _charactersController = Get.find<CharactersController>();
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _CharactersListState extends State<CharactersList> {
   }
 
   void _onScroll() {
-    if (_isBottom) Get.find<CharactersBloc>().add(CharactersFetch());
+    if (_isBottom) _charactersController.fetchCharacters();
   }
 
   bool get _isBottom {
@@ -37,10 +37,9 @@ class _CharactersListState extends State<CharactersList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CharactersBloc, CharactersState>(
-      cubit: Get.find<CharactersBloc>(),
-      builder: (context, state) {
-        if (state.error) {
+    return Obx(
+      () {
+        if (_charactersController.characterList == null) {
           return Center(
             key: Key('character.list.error'),
             child: Text(
@@ -49,7 +48,7 @@ class _CharactersListState extends State<CharactersList> {
             ),
           );
         }
-        final List<Character> _characters = state.showableCharacters;
+        final List<Character> _characters = _charactersController.showableCharacters;
         if (_characters.isEmpty) {
           return Center(
             key: Key('character.list.empty'),
